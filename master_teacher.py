@@ -185,15 +185,14 @@ class MasterTeacher:
                         "temperature": 0.7
                     }
                 },
-                timeout=30
+                timeout=120
             )
             if response.status_code == 200:
+                import re
                 raw_text = response.json().get("response", "").strip()
-                if raw_text.startswith("```"):
-                    raw_text = raw_text.split("```")[1]
-                    if raw_text.startswith("json"):
-                        raw_text = raw_text[4:]
-                raw_text = raw_text.strip()
+                match = re.search(r'\[.*\]', raw_text, re.DOTALL)
+                if match:
+                    raw_text = match.group(0)
                 
                 parsed = json.loads(raw_text)
                 if isinstance(parsed, list) and len(parsed) > 0:
@@ -234,15 +233,14 @@ class MasterTeacher:
                         "temperature": 0.8
                     }
                 },
-                timeout=35
+                timeout=120
             )
             if response.status_code == 200:
+                import re
                 raw_text = response.json().get("response", "").strip()
-                if raw_text.startswith("```"):
-                    raw_text = raw_text.split("```")[1]
-                    if raw_text.startswith("json"):
-                        raw_text = raw_text[4:]
-                raw_text = raw_text.strip()
+                match = re.search(r'\[.*\]', raw_text, re.DOTALL)
+                if match:
+                    raw_text = match.group(0)
                 
                 parsed = json.loads(raw_text)
                 if isinstance(parsed, list) and len(parsed) > 0:
@@ -281,14 +279,18 @@ class MasterTeacher:
                         "temperature": 0.2
                     }
                 },
-                timeout=30
+                timeout=120
             )
             if response.status_code == 200:
+                import re
                 raw_text = response.json().get("response", "").strip()
                 # Clean potential internal thinking/system tokens from Gemma output
                 for token in ["<|channel>thought", "<channel|>", "<|im_end|>", "<|im_start|>", "thought\n"]:
                     raw_text = raw_text.replace(token, "")
                 raw_text = raw_text.strip()
+                match = re.search(r'\[.*\]', raw_text, re.DOTALL)
+                if match:
+                    raw_text = match.group(0)
                 
                 parsed = json.loads(raw_text)
                 if isinstance(parsed, list):

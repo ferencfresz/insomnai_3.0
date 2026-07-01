@@ -1,1 +1,8 @@
 torch>=2.0.0
+matplotlib>=3.7.0
+pandas>=2.0.0
+scikit-learn>=1.2.0
+tqdm>=4.65.0
+transformers>=4.30.0
+peft>=0.4.0
+requests>=2.31.0

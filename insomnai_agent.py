@@ -99,6 +99,37 @@ class MemorySubstrate:
         except Exception as e:
             logger.error(f"Failed to save shadow log: {e}")
 
+    def deduplicate_graph_memory(self):
+        """Semantic merging routine to deduplicate and compress the declarative long_term_memory.json space."""
+        if len(self.long_term_memory) <= 50:
+            return
+            
+        logger.info(f"Deduplicating graph memory (current size: {len(self.long_term_memory)})...")
+        unique_facts = []
+        for fact in self.long_term_memory:
+            if not isinstance(fact, dict):
+                fact = {"subject": "Fact", "relation": "states", "object": str(fact)}
+            
+            is_duplicate = False
+            for u_fact in unique_facts:
+                if fact.get("subject") == u_fact.get("subject") and fact.get("relation") == u_fact.get("relation"):
+                    # Check semantic similarity of the object using SequenceMatcher
+                    similarity = SequenceMatcher(None, str(fact.get("object")), str(u_fact.get("object"))).ratio()
+                    if similarity > 0.8:
+                        is_duplicate = True
+                        # Merge by keeping the longer one
+                        if len(str(fact.get("object"))) > len(str(u_fact.get("object"))):
+                            u_fact["object"] = fact["object"]
+                        break
+            if not is_duplicate:
+                unique_facts.append(fact)
+                
+        pruned_count = len(self.long_term_memory) - len(unique_facts)
+        if pruned_count > 0:
+            logger.info(f"Graph memory deduplicated. Removed {pruned_count} redundant triples.")
+            self.long_term_memory = unique_facts
+            self.save_long_term()
+
     def add_fact(self, fact):
         """Append a string or a triple fact to long-term memory and save."""
         if isinstance(fact, str):
@@ -833,6 +864,7 @@ class InsomnAIAgent:
         logger.info(f"=== INITIATING SYNAPTIC PRUNING FOR ADAPTER '{adapter_name}' TO r={target_rank} ===")
         temp_weights = {}
         target_modules = ["q_proj", "v_proj"]
+        total_reconstruction_error = 0.0
         
         # Check active rank before pruning
         active_rank = 8
@@ -843,7 +875,7 @@ class InsomnAIAgent:
                 
         if active_rank <= target_rank:
             logger.info(f"Adapter '{adapter_name}' rank is already {active_rank} <= target rank {target_rank}. Skipping pruning.")
-            return
+            return 0.0
             
         # Extract and compute SVD
         for name, module in self.active_model.named_modules():
@@ -860,6 +892,11 @@ class InsomnAIAgent:
                 
                 A_new = torch.diag(torch.sqrt(S_pruned)) @ Vh_pruned
                 B_new = U_pruned @ torch.diag(torch.sqrt(S_pruned))
+                
+                # Track SVD reconstruction error
+                W_reconstructed = U_pruned @ torch.diag(S_pruned) @ Vh_pruned
+                error = torch.norm(W_delta - W_reconstructed, p='fro').item()
+                total_reconstruction_error += error
                 
                 temp_weights[name] = {
                     "A": A_new.to(module.lora_A[adapter_name].weight.device), 
@@ -900,6 +937,7 @@ class InsomnAIAgent:
                 
         logger.info(f"LoRA adapter '{adapter_name}' rank successfully pruned from r={active_rank} to r={target_rank} using SVD projection.")
         self.save_checkpoint(f"Pruned LoRA weights to r={target_rank}")
+        return total_reconstruction_error
  
     def train_chat_formatting(self, dataset: List[Dict[str, str]], epochs: int = 10):
         """Supervised Fine-Tuning (SFT) on ChatML formatting for Layer 2 (grammatical)."""
@@ -1105,3 +1143,6 @@ class InsomnAIAgent:
         # Clear conscious episodic logs to prevent context poisoning
         self.memory.episodic_log.clear()
         logger.info("Active episodic log cleared post-consolidation.")
+        
+        # Deduplicate graph memory if it grows beyond 50 entries
+        self.memory.deduplicate_graph_memory()
