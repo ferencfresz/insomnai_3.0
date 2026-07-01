@@ -52,6 +52,7 @@ python run_empirical_verification.py
 ## 📚 Project Roadmap & Documents
 * **Scientific Position Paper:** [insomnai_paper_v3.0.md](insomnai_paper_v3.0.md)
 * **Empirical Verification Plan:** [hypothesis_verification_plan.md](hypothesis_verification_plan.md)
+* **Empirical Verification Report (Latest GPU Results):** [evaluation_report.md](evaluation_report.md)
 * **Swarm Federated Sleep Roadmap:** [future_roadmap.md](future_roadmap.md)
 * **MMLU Academic Testing Plan:** [todo_testing.md](todo_testing.md)
 * **Practical Use Cases:** [use_cases.md](use_cases.md)
