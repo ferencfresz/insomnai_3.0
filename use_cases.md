@@ -1,7 +1,7 @@
-# InsomnAI 2.0: Practical Use Cases & Application Areas
-## InsomnAI 2.0: Gyakorlati Alkalmazási Területek és Felhasználási Esetek
+# InsomnAI 3.0: Practical Use Cases & Application Areas
+## InsomnAI 3.0: Gyakorlati Alkalmazási Területek és Felhasználási Esetek
 
-This document outlines the primary commercial and research application areas for the **InsomnAI 2.0** neuromodulated cognitive agent framework.
+This document outlines the primary commercial and research application areas for the **InsomnAI 3.0** neuromodulated cognitive agent framework.
 
 ---
 

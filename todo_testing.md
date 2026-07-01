@@ -1,7 +1,7 @@
-# InsomnAI 2.0: Academic Testing & Verification Roadmap
+# InsomnAI 3.0: Academic Testing & Verification Roadmap
 ## Tudományos Tesztelési és Empirikus Verifikációs Feladatlista (Roadmap)
 
-This document outlines the concrete steps required to scale the pilot results of **InsomnAI 2.0** into a comprehensive, peer-reviewed evaluation suite for major AI conferences (e.g., NeurIPS, ICLR, ACL).
+This document outlines the concrete steps required to scale the pilot results of **InsomnAI 3.0** into a comprehensive, peer-reviewed evaluation suite for major AI conferences (e.g., NeurIPS, ICLR, ACL).
 
 ---
 
@@ -54,7 +54,7 @@ This document outlines the concrete steps required to scale the pilot results of
     - **A-1:** RAG-only Baseline.
     - **A-2:** Continuous Online SFT.
     - **A-3:** InsomnAI v0.2 (no hormones or decay).
-    - **A-4:** InsomnAI 2.0 (Full framework).
+    - **A-4:** InsomnAI 3.0 (Full framework).
 - [ ] **Export to CSV:**
   - Log cycle number, architecture, ECE, Forgetting Index, and Consolidation Success Rate to a structured CSV file.
 - [ ] **Matplotlib Chart Generator:**

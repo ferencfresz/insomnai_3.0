@@ -1,7 +1,7 @@
-# InsomnAI 2.0: Hypothesis Verification & Empirical Evaluation Plan
+# InsomnAI 3.0: Hypothesis Verification & Empirical Evaluation Plan
 ## Kísérleti Terv és Empirikus Mérési Protokoll a Hipotézis Igazolására
 
-This document details the formal experimental design required to scientifically prove the core cognitive hypothesis of the **InsomnAI 2.0** framework.
+This document details the formal experimental design required to scientifically prove the core cognitive hypothesis of the **InsomnAI 3.0** framework.
 
 ---
 
@@ -28,7 +28,7 @@ This document details the formal experimental design required to scientifically 
 | **A-1 (Baseline RAG)** | Standard RAG-only context loading (No weights modification) | None | None | None | None |
 | **A-2 (Online SFT)** | Continuous online fine-tuning (Immediate training on user inputs) | Single Adapter | None | None | None |
 | **A-3 (InsomnAI v0.2)** | Sleep cycle consolidation, static SFT triggers | Single Adapter | Static Gate | None | None |
-| **A-4 (InsomnAI 2.0)** | Full neuromodulated cycles, SkillAnything, Reflex Decay | Multi-Adapter | Hormonal Gate | Active (Max 3 retries) | Dynamic ($\eta_{ser}, \eta_{adr}$) |
+| **A-4 (InsomnAI 3.0)** | Full neuromodulated cycles, SkillAnything, Reflex Decay | Multi-Adapter | Hormonal Gate | Active (Max 3 retries) | Dynamic ($\eta_{ser}, \eta_{adr}$) |
 
 **[HU]** A hipotézis igazolására egy **50 folyamatos ébrenléti-alvási ciklusból** álló tesztsorozatot futtatunk le négy különböző ágens-architektúrán a fenti táblázat alapján.
 
@@ -65,7 +65,7 @@ $$
 F(t) = \frac{1}{K} \sum_{k=1}^K \max\left(0, \, S_k(\theta_0) - S_k(\theta_t)\right)
 $$
 
-* *Hypothesis requirement:* $F(t) \le 0.05$ (under $5\%$ drift) for **A-4 (InsomnAI 2.0)**, whereas **A-2 (Online SFT)** will diverge ($F(t) > 0.40$).
+* *Hypothesis requirement:* $F(t) \le 0.05$ (under $5\%$ drift) for **A-4 (InsomnAI 3.0)**, whereas **A-2 (Online SFT)** will diverge ($F(t) > 0.40$).
 
 ### 4.2 Expected Calibration Error (ECE)
 We calculate prediction confidence calibration to prove the model's self-assessment accuracy:
@@ -88,7 +88,7 @@ $$
 ### 4.4 Context Poisoning Ratio ($CPR$)
 The proportion of token overhead in the active context window dedicated to history/RAG vs. system tasks:
 
-* *Hypothesis requirement:* **A-1 (RAG)** will experience linear growth in context overhead ($CPR \to 1.0$), causing latency spikes and model confusion. **A-4 (InsomnAI 2.0)** keeps $CPR < 0.15$ because procedural skills are baked directly into the LoRA adapters.
+* *Hypothesis requirement:* **A-1 (RAG)** will experience linear growth in context overhead ($CPR \to 1.0$), causing latency spikes and model confusion. **A-4 (InsomnAI 3.0)** keeps $CPR < 0.15$ because procedural skills are baked directly into the LoRA adapters.
 
 ---
 
