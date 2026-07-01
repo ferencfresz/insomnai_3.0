@@ -447,3 +447,11 @@ W_{new} = W_0 + \Delta W
 $$
 
 majd az adaptert visszaállítja nullára. Ez szimulálja a biológiai szinaptikus skálázást, tartósan beépítve a desztillált felhő-szintű tudást az edge eszköz alapsúlyaiba.
+
+---
+
+## 9. Future Roadmap: Long-Term Aging and Autonomous Data Streaming / Jövőbeli Útiterv: Hosszú távú öregedés és autonóm adatfolyamok
+
+**[EN]** While laboratory simulations confirm the stability of InsomnAI 3.0, the ultimate test lies in deployed "Long-Term Aging." Our future roadmap includes transitioning the agent from controlled ablation suites to continuous, real-time data streams (e.g., Discord or Reddit integration). By employing automated background schedulers (such as cron-based `/schedule` commands), the agent will autonomously wake up, process noisy human interactions, accumulate conflicts, and trigger sleep cycles periodically. This will allow us to observe how the Semantic Deduplication and SVD Pruning routines scale over tens of thousands of cycles and how truly "lifelong" learning shapes the agent's cognitive graph over months without human intervention.
+
+**[HU]** Bár a laboratóriumi szimulációk igazolják az InsomnAI 3.0 stabilitását, a végső próbatétel az éles "Hosszú távú öregedés" (Long-Term Aging). A jövőbeli útitervünk magában foglalja az ágens átvezetését a kontrollált tesztekből a folyamatos, valós idejű adatfolyamok (pl. Discord vagy Reddit integráció) felé. Automatizált háttér-ütemezők (például cron-alapú `/schedule` parancsok) segítségével az ágens autonóm módon felébred, feldolgozza a zajos emberi interakciókat, felhalmozza a konfliktusokat, majd időszakosan alvási ciklusokat indít. Ez lehetővé teszi számunkra, hogy megfigyeljük, miként skálázódik a Szemantikus Deduplikáció és az SVD Metszés több tízezer ciklus során, és hogyan alakítja a valóban "élethosszig" tartó tanulás az ágens kognitív gráfját hónapokon keresztül, emberi beavatkozás nélkül.
