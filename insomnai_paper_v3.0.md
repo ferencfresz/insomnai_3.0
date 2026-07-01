@@ -57,7 +57,7 @@ A módosítások hormon-vezérelt **Validációs Kapun** mennek keresztül (ECE 
 **[EN]** The runtime transitions through a cyclic state machine:
 
 $$
-\text{Wake} \longrightarrow \text{Episodic Consolidation} \longrightarrow \text{REM Dreaming \& Exposure} \longrightarrow \text{Micro-Learning} \longrightarrow \text{SVD Pruning} \longrightarrow \text{Validation} \longrightarrow \text{Reflex Decay} \longrightarrow \text{Wake}
+\text{Wake} \longrightarrow \text{Episodic Consolidation} \longrightarrow \text{REM Dreaming and Exposure} \longrightarrow \text{Micro-Learning} \longrightarrow \text{SVD Pruning} \longrightarrow \text{Validation} \longrightarrow \text{Reflex Decay} \longrightarrow \text{Wake}
 $$
 
 * **Four-Tier Abstraction Layers:**
@@ -69,7 +69,7 @@ $$
 **[HU]** Az ügynök ciklikus állapotgépen megy keresztül:
 
 $$
-\text{Wake} \longrightarrow \text{Epizodikus Konszolidáció} \longrightarrow \text{REM Álmodás \& Expozíció} \longrightarrow \text{Mikro-tanulás} \longrightarrow \text{SVD Metszés} \longrightarrow \text{Validáció} \longrightarrow \text{Reflex-lebomlás} \longrightarrow \text{Wake}
+\text{Wake} \longrightarrow \text{Epizodikus Konszolidáció} \longrightarrow \text{REM Álmodás és Expozíció} \longrightarrow \text{Mikro-tanulás} \longrightarrow \text{SVD Metszés} \longrightarrow \text{Validáció} \longrightarrow \text{Reflex-lebomlás} \longrightarrow \text{Wake}
 $$
 
 * **Négy absztrakciós réteg:**
